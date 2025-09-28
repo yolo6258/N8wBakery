@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>小蛋糕店</title>
+</head>
+<body>
+    <h1>欢迎来到我的小蛋糕店 🍰</h1>
+    <h2>菜单</h2>
+    <ul>
+        {% for cake in cakes %}
+        <li>
+            <img src="{{ cake.img }}" alt="{{ cake.name }}" width="100">
+            <p>{{ cake.name }} - ¥{{ cake.price }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h2>下单</h2>
+    <form action="/order" method="post">
+        姓名: <input type="text" name="name"><br>
+        电话: <input type="text" name="phone"><br>
+        蛋糕:
+        <select name="cake">
+            {% for cake in cakes %}
+            <option value="{{ cake.name }}">{{ cake.name }}</option>
+            {% endfor %}
+        </select><br>
+        数量: <input type="number" name="qty" min="1" value="1"><br>
+        <button type="submit">提交订单</button>
+    </form>
+</body>
+</html>
